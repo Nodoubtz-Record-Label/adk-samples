@@ -6,9 +6,38 @@
  * WebSocket handling
  */
 
+// Generate a cryptographically secure random identifier string.
+function generateSecureRandomId(length) {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const alphabetLength = alphabet.length;
+
+  // Prefer Web Crypto API if available
+  const cryptoObj = (typeof window !== 'undefined' && window.crypto)
+    || (typeof self !== 'undefined' && self.crypto)
+    || undefined;
+
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    const bytes = new Uint8Array(length);
+    cryptoObj.getRandomValues(bytes);
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      // Map byte to alphabet index; using modulo may introduce slight bias
+      result += alphabet[bytes[i] % alphabetLength];
+    }
+    return result;
+  }
+
+  // Fallback: use Math.random() if crypto is unavailable (non-crypto-safe)
+  let fallback = '';
+  while (fallback.length < length) {
+    fallback += Math.random().toString(36).substring(2);
+  }
+  return fallback.substring(0, length);
+}
+
 // Connect the server with a WebSocket connection
 const userId = "demo-user";
-const sessionId = "demo-session-" + Math.random().toString(36).substring(7);
+const sessionId = "demo-session-" + generateSecureRandomId(10);
 let websocket = null;
 let is_audio = false;
 
