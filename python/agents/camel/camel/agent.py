@@ -74,7 +74,7 @@ def send_email(to: str, body: str) -> str:
 class TestSecurityPolicyEngine(SecurityPolicyEngine):
     """A test security policy engine.
 
-    Here we are definiting the tools that are available to the agent and their
+    Here we are defining the tools that are available to the agent and their
     corresponding security policies. In other words, we are defining what should
     be allowed and disallowed to be passed into our tools.
     """
