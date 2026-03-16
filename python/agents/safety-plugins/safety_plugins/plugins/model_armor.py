@@ -138,6 +138,7 @@ class ModelArmorSafetyFilterPlugin(BasePlugin):
                     )
                 ],
             )
+        return None
 
     async def before_run_callback(
         self,
