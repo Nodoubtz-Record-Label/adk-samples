@@ -74,7 +74,7 @@ def send_email(to: str, body: str) -> str:
 class TestSecurityPolicyEngine(SecurityPolicyEngine):
     """A test security policy engine.
 
-    Here we are definiting the tools that are available to the agent and their
+    Here we are defining the tools that are available to the agent and their
     corresponding security policies. In other words, we are defining what should
     be allowed and disallowed to be passed into our tools.
     """
@@ -114,7 +114,7 @@ class TestSecurityPolicyEngine(SecurityPolicyEngine):
             return Denied("All arguments must be provided.")
 
         # Create a set of potential readers from the 'to' argument
-        potential_readers = {[to.raw]}
+        potential_readers = {to.raw}
 
         # If the body can be read by the potential readers or is public,
         # then the email can be sent.
