@@ -160,6 +160,6 @@ root_agent = CaMeLAgent(
     name="CaMeLAgent",
     model="gemini-2.5-pro",
     tools=external_tools,
-    security_policy_engine=TestSecurityPolicyEngine(),
+    security_policy=TestSecurityPolicyEngine(),
     eval_mode=DependenciesPropagationMode.NORMAL,
 )
